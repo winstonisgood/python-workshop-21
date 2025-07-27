@@ -24,24 +24,34 @@ It is recommended to use a virtual environment to avoid conflicts with your syst
    python3 -m venv myenv
    source myenv/bin/activate
 
+   for no bash user:
+   myenv\Scripts\activate.bat
+   myenv\Scripts\activate.ps1
+
+
 ### Installation
 
 1. Clone this repository to your local machine:
    ```bash
    git clone https://github.com/winstonisgood/python_introduction.git
-2. Navigate to the cloned repository directory:
+2. Navigate to the work_shop_1 folder
    ```bash
-   cd introduce_python
+   cd work_shop1
    ```
-3. Navigate to the work_shop_1 folder
-   ```bash
-   cd work_shop_1
-   ```
-4. Install the required Python packages using pip:
+3. Install the required Python packages using pip:
    ```bash
    pip3 install playwright
    ```
-5. Install browser dependencies for Playwright:
+   if not working, run the following command before:
+   ```bash
+   python3 -m venv myenv
+   source myenv/bin/activate
+
+   for no bash user:
+   myenv\Scripts\activate.bat
+   myenv\Scripts\activate.ps1
+   ```
+4. Install browser dependencies for Playwright:
    ```bash
    python3 -m playwright install
    ```
