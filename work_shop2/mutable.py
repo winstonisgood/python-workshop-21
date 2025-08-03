@@ -61,3 +61,7 @@ c =2
 #     if i == 2:
 #         break
 #     print(i)
+
+print("Welcome to Inch CM Converter")
+input_value  = input("Please enter the value of Inch: ")
+print ()
