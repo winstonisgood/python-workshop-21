@@ -1,9 +1,13 @@
-print("Welcome to Inch CM Coverter")
-a = input("Please enter the value of Inch:")
-print(a)
+#print("Welcome to Inch CM Coverter")
+#a = input("Please enter the value of Inch:")
+#print(a)
 
-b=float(a)*2.54
-print(b)
+#b=float(a)*2.54
+#print(b)
 
 #print(a+"inch ="+str(b)+"cm")
-print(f"{a}inch = {b}cm")
+#print(f"{a}inch = {b}cm")
+
+input_inch = input("Enter the length in inches: ")
+result_cm = float(input_inch) * 2.54
+print(f"{input_inch} inches is equal to {result_cm} centimeters.")
