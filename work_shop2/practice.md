@@ -29,7 +29,7 @@ please enter a number: 23
 please enter a number: 23
 please enter a number: 18.9
 
-The average number is 24.96666666667
+The average number is 21.633333333333336
 ```
 
 3.  Calculate max, min, total, average
