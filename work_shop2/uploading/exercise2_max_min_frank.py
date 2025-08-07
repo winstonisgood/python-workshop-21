@@ -11,7 +11,9 @@ while True:
     except ValueError:
         print("it must be a number/float for math")
         break
-    
+    if i==1:
+        max_number = int_number
+        min_number = int_number
     i+=1
     if max_number < int_number:
         max_number = int_number
@@ -22,4 +24,3 @@ while True:
 print("In these "+ str(i) + " numbers you inputed totally:" + str(total_number)+"\n"+
       "the max one is :"  + str(max_number) + 
       "\n and the min one is: " + str(min_number))          
-
