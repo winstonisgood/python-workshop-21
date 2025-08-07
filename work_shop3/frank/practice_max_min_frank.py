@@ -21,6 +21,7 @@ while True:
         min_number = int_number
     total_number += int_number
 
+print("1")
 print("In these "+ str(i) + " numbers you inputed totally:" + str(total_number)+"\n"+
       "the max one is :"  + str(max_number) + 
       "\n and the min one is: " + str(min_number))          
