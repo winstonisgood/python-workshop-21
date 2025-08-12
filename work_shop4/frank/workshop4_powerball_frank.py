@@ -15,7 +15,7 @@ def picknumbers_1(poolsize:int, ballnum:int) :
 def picknumbers_2(poolsize:int, ballnum:int) -> list:
     pool_list = list(range(1, poolsize + 1))  # Create a list from 1 to poolsize
     picked_list = []  # Initialize an empty list to store picked numbers
-    picked_list = random.sample(pool_list, ballnum)  # Use random.sample to pick unique numbers
+    picked_list = random.sample(pool_list, ballnum) # Use random.sample to pick unique numbers
     return picked_list
 
 def picknumbers_3(poolsize:int, ballnum:int) -> list:
@@ -36,10 +36,22 @@ def picknumbers_3(poolsize:int, ballnum:int) -> list:
         i += 1
         
     return picked_list
-        
-print("pick 7 balls from 1 to 35: " + str(picknumbers_2(35, 7)))        
-print(f"pick 7 lucky numbers from 1 to 35:{picknumbers_3(35, 7)}")
-print("the win number is:" + str(picknumbers_1(20, 1)))
+
+def picknumbers_4(poolsize:int, ballnum:int) -> list:
+    pool_list = list(range(1, poolsize+1))  # Create a list from 1 to poolsize
+    picked_list = []  # Initialize an empty list to store picked numbers
+
+    for i in range(ballnum):
+        random.shuffle(pool_list) # Shuffle every time before picking
+        picked_list.append(pool_list.pop())# Pick the last number from the shuffled list
+        i += 1
+    
+    return picked_list
+    
+print("fun 2->pick 7 balls from 1 to 35: " + str(picknumbers_2(35, 7)))        
+print(f"fun 3->pick 7 balls from 1 to 35:{picknumbers_3(35, 7)}")
+print("fun 4->pick 7 balls from 1 to 35: " + str(picknumbers_4(35, 7)))
+print("fun 1 ->the win number is:" + str(picknumbers_1(20, 1)))
 
 #git chekout -b work_shop4_frank
 #git branch --set-upstream-to=origin/Frank-workshop_4 Frank-workshop_4
