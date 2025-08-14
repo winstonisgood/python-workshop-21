@@ -7,10 +7,7 @@ def picknumbers(poolsize, ballnum):
     :param ballnum: Number of balls to pick from the pool.
     :return: A list of unique balls picked from the pool.
     """
-    balls = list(range(1, poolsize + 1)) # Create a list of balls numbered from 1 to poolsize
-    
-    random.shuffle(balls) # Shuffle the list of balls to ensure randomness
-    
+
     if not isinstance(poolsize, int) or not isinstance(ballnum, int):
         raise TypeError("Both poolsize and ballnum must be integers.")
     if poolsize < 1:
@@ -19,6 +16,10 @@ def picknumbers(poolsize, ballnum):
         raise ValueError("Number of balls to pick must be at least 1.")
     if ballnum > poolsize:
         raise ValueError("Number of balls to pick cannot be greater than pool size.")
+    
+    balls = list(range(1, poolsize + 1)) # Create a list of balls numbered from 1 to poolsize
+    
+    random.shuffle(balls) # Shuffle the list of balls to ensure randomness
     
     picked = balls[:ballnum] # Pick the first 'ballnum' balls from the shuffled list
     
