@@ -13,7 +13,7 @@ sum = 0
 values = []
 for i in range(number):
     value = input("Please enter a number: ")
-    values.append(value)
+    values.append(float(value))
     sum += float(value)
 
 max_value = max(values)
