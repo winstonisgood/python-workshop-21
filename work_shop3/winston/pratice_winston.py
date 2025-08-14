@@ -1,7 +1,6 @@
 
 while_check = True
 while while_check:
-    # check the number is a valid integer
     try:
         number = input('Please enter how many number you going to enter: ')
         number = int(number)
@@ -19,7 +18,6 @@ min_value = min(values)
 index_max = []
 index_min = []
 
-# find the index for the max number and min number
 for i in range(len(values)):
     if values[i] == max_value:
         index_max.append(i)
