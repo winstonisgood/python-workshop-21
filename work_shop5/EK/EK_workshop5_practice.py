@@ -11,7 +11,7 @@ folder_path = os.path.abspath(folder)  #Get the absolute path of the data folder
 file_path_A = os.path.join(folder_path, f"{file_name}-A.txt")
 file_path_B = os.path.join(folder_path, f"{file_name}-B.txt")
 #Create the full file paths for both A and B files.
-file_path_output = os.path.join(folder_path, f"{file_name}-out.txt")
+file_path_output = os.path.join(current_dir, f"{file_name}-out.txt")
 #Create the output file path.
 
 if not os.path.exists(file_path_A):
