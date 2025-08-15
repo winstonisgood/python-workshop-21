@@ -11,32 +11,51 @@ while while_check:
         print("it is not a number, entering termitated")
         break
 
-i = 0
-max_number = 0
-min_number = 0
-max_index = 0
-min_index = 0
+max_value = max(number_list)
+min_value = min(number_list)
+index_max = []
+index_min = []
 
-for single_number in number_list:
-    if i == 0 :
-        max_number = min_number = single_number
-        max_index = min_index = 0
-    i += 1
-    
-    if max_number < single_number:
-        max_number = single_number
-        max_index = number_list.index(single_number)
-    if min_number > single_number:
-        min_number = single_number
-        min_index = number_list.index(single_number)
-    
-print(
-    "In these " + str(len(number_list)) + " numbers you inputed totally: " + str(sum(number_list)) + "\n" +
-    "the max one is: " + str(max_number) + " at index: " + str(max_index) + "\n" +
-    "the min one is: " + str(min_number) + " at index: " + str(min_index) + "\n" +
-    "the average is: " + str(sum(number_list) / len(number_list)) 
-    )   
+for i in range(len(number_list)):
+    if number_list[i] == max_value:
+        index_max.append(i)
+    if number_list[i] == min_value:
+        index_min.append(i)
+        
+print(f"the max is :{max(number_list)} at {index_max}" )
+print(f"the min is :{min(number_list)} at {index_min}")
+# print(f'The max number is {max_value} and position at {index_max}')
+# print(f'The min number is {min_value} and position at {index_min}')
+# print(f'The total is {sum(values)}')
+# print(f'The average number is {sum(values) / len(values)}')
+#find the max and min in the original list
+# i = 0
+# max_number = 0
+# min_number = 0
+# max_index = 0
+# min_index = 0
 
+# for single_number in number_list:
+#     if i == 0 :
+#         max_number = min_number = single_number
+#         max_index = min_index = 0
+#     i += 1
+    
+#     if max_number < single_number:
+#         max_number = single_number
+#         max_index = number_list.index(single_number)
+#     if min_number > single_number:
+#         min_number = single_number
+#         min_index = number_list.index(single_number)
+    
+# print(
+#     "In these " + str(len(number_list)) + " numbers you inputed totally: " + str(sum(number_list)) + "\n" +
+#     "the max one is: " + str(max_number) + " at index: " + str(max_index) + "\n" +
+#     "the min one is: " + str(min_number) + " at index: " + str(min_index) + "\n" +
+#     "the average is: " + str(sum(number_list) / len(number_list)) 
+#     )   
+
+#sort the list to get man and min
 # number_list.sort()
 
 # for i in number_list:
