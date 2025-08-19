@@ -57,8 +57,40 @@ class EBook(Book):
         return f"EBook '{self._title}' is digital and does not require stock management."
 
 #Create an Inventory Class
-
+#Methods: add_book(), remove_book(), find_book(), display_inventory()
+class Inventory:
+    def __init__(self):
+        #Attributes: books (a list to store Book objects)
+        self._books = []
+    
+    #Method to add a book to the inventory
+    def add_book(self, book):
+        self._books.append(book)
+        return f"Book '{book._title}' added to inventory."
+    
+    #Method to remove a book from the inventory by title
+    def remove_book(self, title):
+        for book in self._books:
+            if book._title == title:
+                self._books.remove(book)
+                return f"Book '{book._title}' removed from inventory."
+        return f"Book '{book._title}' not found in inventory."
+    
+    #Method to find a book by title
+    def find_book(self, title):
+        for book in self._books:
+            if book._title == title:
+                return book.display_info()
+        return f"Book '{book._title}' not found in inventory."
+    
+    #Method to display all books in the inventory
+    def display_inventory(self):
+        if not self._books:
+            return "Inventory is empty."
+        return "\n".join(book.display_info() for book in self.books)
 
 #Main Program
-
-
+#Create an instance of Inventory
+#Add a few books to the inventory
+#Display the inventory
+#Simulate selling a book and updating the stock
