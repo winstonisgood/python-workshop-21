@@ -89,6 +89,6 @@ inventory.display_inventory()
 # Simulate selling a book and updating the stock
 selling_book = inventory.find_book("9781421576831")
 if selling_book:
-    selling_book.sell_book(2)
+    selling_book.sell_book(5)
 inventory.display_inventory()
 
