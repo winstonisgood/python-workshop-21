@@ -4,20 +4,23 @@ class Book():#a class of book with basic attributes and methods
         self.author = author
         self.isbn = isbn
         self.price = price
-        self.stock = stock
+        self.__stock = stock
+    
+    def get_stock(self):
+        return self.__stock
     
     def add_stock(self, amount):
-        self.stock += amount
+        self.__stock += amount
     
     def sell_book(self, amount):
-        if amount <= self.stock:#compare the amount with stock
-            self.stock -= amount
+        if amount <= self.__stock:#compare the amount with stock
+            self.__stock -= amount
         else:#if amount is larger than stock, stock will be set to 0
-            print(f"only {self.stock} to sell")
-            self.stock = 0
+            print(f"only {self.__stock} to sell")
+            self.__stock = 0
             
     def display_info(self):
-        print(f"dispplay info: Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}, Price: {self.price}, Stock: {self.stock}")
+        print(f"dispplay info: Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}, Price: {self.price}, Stock: {self.get_stock()}")
 
 class EBook(Book):
     def __init__(self,title, author, isbn, price, stock,file_format):
@@ -27,8 +30,8 @@ class EBook(Book):
     def set_format(self, file_format):
         self.file_format = file_format
 
-    def display_info(self):
-        print(f"dispplay info: Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}, Price: {self.price}, Stock: {self.stock}, Format: {self.file_format}")
+    def ebook_display_info(self):
+        print(f"dispplay info: Title: {self.title}, Author: {self.author}, ISBN: {self.isbn}, Price: {self.price}, Stock: {self.get_stock()}, Format: {self.file_format}")
 
 # an inventory class to manage a list of books
 # every element in the list is a Book object
@@ -64,15 +67,19 @@ class BookInventory(Book):
     
     def display_inventory(self):
         for book in self.books:
-            print(f"Title: {book.title}, inventory: {book.stock}")
+            print(f"Title: {book.title}, inventory: {book.get_stock()}")
         
     def find_book(self,title):
         i = 0
         for book in self.books:
             if title in book.title.lower():
-                i += 1
+                i += 1                      #check value
                 print(f"Found it: ")
-                book.display_info()
+                
+                if isinstance(book, EBook) :#check if it is a ebook
+                    book.ebook_display_info()#print one more attribute:file_format
+                else:                        
+                    book.display_info()#only attributes from parrent class
         if i == 0:
             print("Not this book in the inventory")
 
@@ -81,6 +88,7 @@ book_inventory = BookInventory()
 
 #create an inventory class list and add some books, 
 #every book is a Book object in the Inventory List
+print("--------------create a book inventroy list-----------------")
 book1 = Book("1984", "George Orwell", "1234567890", 15.99, 10)
 book_inventory.add_book(book1)
 book1 = Book("To Kill a Mockingbird", "Harper Lee", "0987654321", 12.99, 5)
@@ -93,33 +101,48 @@ book1 = Book("aaa", "bbb", "2222", 111, 10)
 book_inventory.add_book(book1)
 book_inventory.display_inventory()
 
-#the latest book1 is "aaa"
-#when change the stock in the book1 instance, inventory list is changed as well
-book1.add_stock(3)
-book1.display_info()
-book_inventory.display_inventory()
-
 #change stock in the inventory list by isbn
 #add stock into the list by isbn
+print("-----------------add stock by isbn------------------------")
 book_inventory.add_stock("1111", 7)
 print("add stock into 1111:")
 book_inventory.display_inventory()
 #sell book(minus stock from the list) by isbn
+print("-----------------sell stock by isbn------------------------")
 book_inventory.sell_book("1234", 15)
 print("sell book 1234:")
 book_inventory.display_inventory()
 
 #to find a book by title with in title.lower()
+print("---------find a book by title with in title.lower()-------")
 book_inventory.find_book("sa")
 
 #remove a book by title with ==
+print("---------remove a book by title with == #------------")
 book_inventory.remove_book("aaa")
 book_inventory.display_inventory()
 
+#set a Ebook and change its format attribute
+print("------#set a Ebook and change its format attribute-----------")
 ebook = EBook("harry 1", "au1", "888", 25.5, 30, "pdf")
-ebook.display_info()
+ebook.ebook_display_info()
+print("-------change file_format from pdf to bmp---------------")
 ebook.set_format("bmp")#change format from pdf to bmp
-ebook.display_info()
-
+ebook.ebook_display_info()
+#append this Ebook into the inventory list
+print("------------#append this Ebook into the inventory list--------")
 book_inventory.add_book(ebook)#add ebook into the inventory list
 book_inventory.display_inventory()
+#change this ebook stock
+print("------------change this ebook stock---------------------")
+book_inventory.sell_book("888", 9)
+book_inventory.display_inventory()
+#search this Ebook from the list and display its Attribute
+print("---------#search this Ebook from the list and display its Attribute------")
+book_inventory.find_book("ha")#search if there is a ebook in the list
+
+#git chekout -b Frank-workshop-6
+#git branch --set-upstream-to=origin/Frank-workshop-6 Frank-workshop-6
+#git pull
+#git commit -m "dfdfdfd"
+#git push
