@@ -35,17 +35,17 @@ class Book:
 class EBook(Book):
     def __init__(self, title, author, isbn, price, file_format):
         #stock initialized to 0 by default as EBooks are often digital and may not have physical stock.
-        super().__init__(title, author, isbn, price, 0)
+        super().__init__(title, author, isbn, price, stock=float('inf'))  # Use float('inf') to represent unlimited stock
         #Set stock to unlimited for digital books
-        self.stock = float('unlimited')
+        self._stock = float('inf')
         self._file_format = file_format
-        #Initialize a sold attribute to track the number of digital copies sold
+        #Initialize sold attribute to track the number of digital copies sold
         self._sold = 0
     
     #Override the display_info method to include file format
     def display_info(self):
         base_info = super().display_info()
-        return f"{base_info}, stock: unlimited (digital), File Format: {self._file_format}, sold: {self._sold}"
+        return f"{base_info}, unlimited (digital), File Format: {self._file_format}, sold: {self._sold}"
     
     #Override the sell_book method to handle digital sales
     def sell_book(self, quantity=0):
@@ -87,10 +87,32 @@ class Inventory:
     def display_inventory(self):
         if not self._books:
             return "Inventory is empty."
-        return "\n".join(book.display_info() for book in self.books)
+        return "\n".join(book.display_info() for book in self._books)
 
 #Main Program
-#Create an instance of Inventory
-#Add a few books to the inventory
-#Display the inventory
-#Simulate selling a book and updating the stock
+if __name__ == "__main__":
+    #Create an instance of Inventory
+    inventory = Inventory()
+    
+    #Add a few books to the inventory
+    book1 = Book("The Lord of the Rings", "John Ronald Reuel Tolkien", "9780261103207", 58.09, 50)
+    book2 = Book("Think and Grow Rich", "Napoleon Hill & Rosa Lee Beeland", "9781788441025", 20, 12)
+    ebook1 = EBook("A Different Kind of Power", "Jacinda Ardern", "9781776951284", 20.99, "ePUB")
+    
+    print(inventory.add_book(book1))
+    print(inventory.add_book(book2))
+    print(inventory.add_book(ebook1))
+    
+    #Display the inventory
+    print("\nCurrent Inventory:")
+    print(inventory.display_inventory())
+    
+    #Simulate selling a book and updating the stock
+    print("\nSelling a book:")
+    print(book1.sell_book(2))  # Sell 2 copies of The Lord of the Rings
+    print(inventory.display_inventory())
+    
+    print("\nSelling an EBook:")
+    print(ebook1.sell_book(3))  # Sell 3 digital copies of A Different Kind of Power
+    print(inventory.display_inventory())
+
