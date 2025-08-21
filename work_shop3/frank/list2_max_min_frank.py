@@ -21,6 +21,7 @@ for single_number in number_list:
     if i == 0 :
         max_number = min_number = single_number
         max_index = min_index = number_list.index(single_number)
+
     i += 1
     
     if max_number < single_number:
