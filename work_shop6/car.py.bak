@@ -1,0 +1,16 @@
+class Car():
+    year=2025
+    def __init__(self,model,brand,owner):
+        self.model=model
+        self._brand=brand
+        self.__owner=owner
+
+car_one=Car("accord","honda","tiffany")
+car_two=Car("A6","audi","Frank")
+print(car_one.year)
+print(car_two.year)
+
+print("before:", car_one.model)
+print(car_one._brand)
+print(car_one.__owner)
+
