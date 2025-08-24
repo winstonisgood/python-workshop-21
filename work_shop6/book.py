@@ -2,34 +2,45 @@
 # Attributes: title, author, isbn, price, stock
 class Book:
     def __init__(self,title,author,isbn,price,stock):
-        self.title = title
-        self.author = author
-        self.isbn = isbn
-        self.price = price
-        self.stock = stock
-# Methods: display_info(), add_stock(), sell_book()
+        self._title = title
+        self._author = author
+        self._isbn = isbn
+        self._price = price
+        self._stock = stock
+    # Safely access without breaking encapsulation
+    @property
+    def title(self):
+        return self._title
+    @property
+    def author(self):
+        return self._author
+    @property
+    def isbn(self):
+        return self._isbn
+    @property
+    def price(self):
+        return self._price
+    @property
+    def stock(self):
+        return self._stock
+    # Methods:display_info()
     def display_info(self):
-        print(f"Title:{self.title}")
-        print(f"Author:{self.author}")
-        print(f"ISBN:{self.isbn}")
-        # float-2 decimal places.Currency standard.
-        print(f"Price:${self.price:.2f}")
-        print(f"Stock:{self.stock} copies")
-
+        print(f"Title:{self._title},Author:{self._author},ISBN:{self._isbn},Price:${self._price},Stock:{self._stock} copies")
+    #  add_stock()
     def add_stock(self,quantity):
         if quantity > 0:
-            self.stock =+ quantity
-            print(f"Added: {quantity} copies. Updated stock: {self.stock}")
+            self._stock =+ quantity
+            print(f"Added: {quantity} copies. Updated stock: {self._stock}")
         else:
             print("Invalid input. Please enter a positive number.")
-
+    #  sell_book()
     def sell_book(self,quantity):
         if quantity > 0:
-            if quantity > self.stock:
-                print(f"Not enough stock to sell. Only {self.stock} copies in stock.")
+            if quantity > self._stock:
+                print(f"Not enough stock to sell. Only {self._stock} copies in stock.")
             else:
-                self.stock -= quantity
-                sell_price = self.price * quantity
+                self._stock -= quantity
+                sell_price = self._price * quantity
                 print(f"{quantity} copies sold. Total price is {sell_price}.")
         else:
             print("Invalid input.Please enter a positive number.")
@@ -49,29 +60,37 @@ class Ebook(Book):
 # Attributes: books (a list to store Book objects)
 class Inventory:
     def __init__(self):
-        self.book_lists =[]
-# Methods: add_book(), remove_book(), find_book(), display_inventory()
+        self.books =[]
+    # Methods: add_book()  
     def add_book(self,book):
-        self.book_lists.append(book)
-        print(f"Book: {book.title}  added to Inventory.")
+        # do a isbn duplicate check
+        for existing_book in self.books:
+            if existing_book.isbn == book.isbn:
+                print(f"The book with ISBN{book.isbn} is already in the inventory.")
+                return
+        self.books.append(book)
+        print(f"Book: {book._title}  added to Inventory.")
+    # remove_book()
     def remove_book(self,isbn):
-        for book in self.book_lists:
+        for book in self.books:
             if book.isbn == isbn:
-                self.book_lists.remove(book)
+                self.books.remove(book)
                 print(f"Book:{book.title} is removed from inventory.")
                 return 
             else:
                 print(f"Can not find the book.")
         return
+    # find_book()
     def find_book(self,isbn):
-        for book in self.book_lists:
+        for book in self.books:
             if book.isbn == isbn:
                 return book
             else:
                 print(f"Can not find the book.") 
         return
+    # display_inventory()
     def display_inventory(self):
-        for book in self.book_lists:
+        for book in self.books:
             book.display_info()          
 
 # 4. Main Program
@@ -81,14 +100,16 @@ inventory = Inventory()
 book1 = Book("One piece. Vol. 73, Operation Dressrosa","Oda, Eiichirō","9781421576831",27.88,3)
 book2 = Book("Hot Desk","Dickerman, Laura","9780241729656",19.99,1)
 book3 = Ebook("A little book about fear"," Memory, Jelani","9780241743423",6.99,1,"PDF")
+book4 = Ebook("Test"," Memory, Jelani","9780241743423",6.99,1,"PDF")
 inventory.add_book(book1)
 inventory.add_book(book2)
 inventory.add_book(book3)
+# testing for a isbn duplicate check
+inventory.add_book(book4)
 # Display the inventory
 inventory.display_inventory()
 # Simulate selling a book and updating the stock
 selling_book = inventory.find_book("9781421576831")
 if selling_book:
-    selling_book.sell_book(5)
+    selling_book.sell_book(2)
 inventory.display_inventory()
-
