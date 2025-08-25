@@ -10,14 +10,14 @@
 # print("3, final: ", a) # [1] #5dc23d
 
 # #immutable
-def changeB(b):
-    b = 1
-    return b
-    c = 2
-    def changeC(c):
-        b = c
+# def changeB(b):
+#     b = 1
+#     return b
+#     c = 2
+#     def changeC(c):
+#         b = c
 
-c =2
+# c =2
 # b = 3
 # changeB(b)
 # print(b)
